@@ -46,7 +46,7 @@ namespace Telephone_Format
         // phone number format is ###-###-####
         private void TelephoneFormat(ref string str)
         {
-
+            string phone = str.Insert(4, "-" 8, "-");
         }
 
         private void formatButton_Click(object sender, EventArgs e)

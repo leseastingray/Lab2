@@ -18,6 +18,10 @@ namespace String_Stuff
 
         private string SwitchCase(string input)
         {
+            foreach (char letter in input)
+            {
+                char letter.ToUpper(input[0]);
+            }
             string output = "";
             return output;
         }
@@ -30,16 +34,21 @@ namespace String_Stuff
 
         private string PigLatin(string input)
         {
+            input.Remove(0);
             string output = "";
             return output;
         }
 
+        // Given a string, shift charactters in the alphabet by an integer value
+        // Ex: "abcd" ---> "fghi" (that is a shift by 5)
         private string ShiftCypher(string input, int charsToShift)
         {
             string output = "";
             return output;
         }
 
+        // Substitution cypher: substitute each char in the given string with
+        // the proper character based on position in the alphabet.
         private string SubCypher(string input, string charsToSub)
         {
             string output = "";

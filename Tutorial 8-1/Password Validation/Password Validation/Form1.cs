@@ -26,6 +26,10 @@ namespace Password_Validation
             // look at each individual character in the str 
             // and increment the count if that char is uppercase
 
+           // foreach (char  in password)
+           // { 
+            //    char.IsUpper
+            //}
             // Return the number of uppercase characters.
             return upperCase;
         }
@@ -64,7 +68,8 @@ namespace Password_Validation
             string password = passwordTextBox.Text;
 
             // Validate the password.
-            if (true)
+            if (NumberUpperCase(password) >= 1 && NumberLowerCase(password) >= 1
+                    && NumberDigits(password) >= 8)
             {
                 MessageBox.Show("The password is valid.");
             }
