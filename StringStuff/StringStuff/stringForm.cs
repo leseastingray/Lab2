@@ -11,6 +11,10 @@ namespace String_Stuff
 {
     public partial class stringForm : Form
     {
+        //Constants
+        int SECRETSHIFT = 5;
+        string SECRETSUB = "QWERTYUIOPASDFGHJKLZXCVBNM";
+
         public stringForm()
         {
             InitializeComponent();
@@ -86,15 +90,70 @@ namespace String_Stuff
         // Ex: "abcd" ---> "fghi" (that is a shift by 5)
         private string ShiftCypher(string input, int charsToShift)
         {
-            string output = "";
+            char[] shiftArray = new char[input.Length];
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                int asciiValue = (int)input[i];
+
+                int shiftedValue = asciiValue + charsToShift;
+
+                // Lowercase besides upper end
+                if (shiftedValue <= 122 && shiftedValue >= 97)
+                {
+                    char letter = (char)shiftedValue;
+                    shiftArray[i] = letter;
+                }
+                // Lowercase upper end
+                else if (shiftedValue > 122)
+                {
+                    char letter = (char)(shiftedValue - 26);
+                    shiftArray[i] = letter;
+                }
+                // Uppercase besides upper end
+                else if (shiftedValue <= 90 && shiftedValue >= 65)
+                {
+                    char letter = (char)shiftedValue;
+                    shiftArray[i] = letter;
+                }
+                // Uppercase upper end
+                else
+                {
+                    char letter = (char)(shiftedValue - 26);
+                    shiftArray[i] = letter;
+                }
+            }
+            string output = new string(shiftArray);
             return output;
         }
 
         // Substitution cypher: substitute each char in the given string with
-        // the proper character based on position in the alphabet.
+        // the proper character based on position in the alphabet. (ShiftCypher, 
+        // but each char in input has a different shift)
         private string SubCypher(string input, string charsToSub)
         {
-            string output = "";
+            char[] subArray = new char[input.Length];
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                char sub = input[i];
+
+                int shiftIndex = 0;
+
+                for (int j = 0; j < charsToSub.Length; j++)
+                {
+                    if (char.ToLower(charsToSub[j]) == char.ToLower(sub))
+                    {
+                        shiftIndex = j;
+                        break;
+                    }
+                }
+                Console.WriteLine("sub:" + sub + ", shifted: " + shiftIndex);
+                subArray[i] = ShiftCypher(sub.ToString(), shiftIndex)[0];
+                Console.WriteLine("becomes:" + subArray[i]);
+            }
+
+            string output = new string(subArray);
             return output;
         }
 
@@ -104,6 +163,8 @@ namespace String_Stuff
             switchCaseTextBox.Text = SwitchCase(input);
             reverseTextBox.Text = Reverse(input);
             pigLatinTextBox.Text = PigLatin(input);
+            shiftTextBox.Text = ShiftCypher(input, SECRETSHIFT);
+            subTextBox.Text = SubCypher(input, SECRETSUB);
 
         }
     }
