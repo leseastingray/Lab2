@@ -18,24 +18,67 @@ namespace String_Stuff
 
         private string SwitchCase(string input)
         {
-            foreach (char letter in input)
+            // Declare array.
+            char[] switched = new char[input.Length];
+
+            // For each letter in the array, less than the length of the array
+            // and incremented
+            //    if char is lowercase
+            //          change to uppercase
+            //    else if char is uppercase
+            //          change to lowercase
+            // return as string output
+            for (int letter = 0; letter < input.Length; letter++)
             {
-                char letter.ToUpper(input[0]);
+                if (char.IsLower(input[letter]))
+                {
+                    switched[letter] = char.ToUpper(input[letter]);
+                }
+                else if (char.IsUpper(input[letter]))
+                {
+                    switched[letter] = char.ToLower(input[letter]);
+                }
             }
-            string output = "";
+            string output = new string(switched);
             return output;
         }
 
         private string Reverse(string input)
         {
-            string output = "";
+            // Declare variables and array
+            int i, j;
+            int inLen = input.Length;
+            char[] reversed = new char[inLen];
+
+            // Beginning at index i (array length minus 1) and index j(array[0],
+            // less than inLen, i decremented and j incrememented
+            //     assign input decremented to reversed array
+            // return as string output
+            for (i = inLen - 1, j = 0; j < inLen; i--, j++)
+            {
+                reversed[j] = input[i];
+            }
+            string output = new string(reversed);
             return output;
         }
 
         private string PigLatin(string input)
         {
-            input.Remove(0);
-            string output = "";
+            // Declare variables
+            string pigLatin;
+            char letter;
+
+            // Assign value of first element(letter) to variable
+            letter = input[0];
+
+            // Remove the first letter
+            pigLatin = input.Remove(0, 1);
+
+            // Add removed letter to the end of the string
+            pigLatin = pigLatin + letter.ToString();
+
+            // Add "ay" to the end of that string and return output
+            string output = pigLatin.Insert(input.Length, "ay");
             return output;
         }
 
@@ -59,6 +102,8 @@ namespace String_Stuff
         {
             string input = inputTextBox.Text;
             switchCaseTextBox.Text = SwitchCase(input);
+            reverseTextBox.Text = Reverse(input);
+            pigLatinTextBox.Text = PigLatin(input);
 
         }
     }
