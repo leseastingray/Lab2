@@ -66,9 +66,9 @@ namespace Telephone_Format
         private void TelephoneFormat(ref string str)
         {
             // Insert first hyphen
-            str = str.Insert(4, "-");
+            str = str.Insert(3, "-");
             // Insert second hyphen
-            str = str.Insert(8, "-");
+            str = str.Insert(7, "-");
         }
 
         private void formatButton_Click(object sender, EventArgs e)
