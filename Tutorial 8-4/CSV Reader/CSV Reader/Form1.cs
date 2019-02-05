@@ -26,7 +26,7 @@ namespace CSV_Reader
             // test score tokens.
             for (int count = 0; count < scores.Length; count++)
             {
-                total += total;
+                total += scores[count];
             }
             // Calculate the average of these
             // test scores.
@@ -41,7 +41,8 @@ namespace CSV_Reader
                 StreamReader inputFile;  // To read the file
                 string line;             // To hold a line from the file
                 double average = 0;      // Test score average
-                int count = 0;           // Student counter
+                int count = 0;           // Student index
+                int studentCount = 1;    // While loop counter
 
                 // Create a delimiter array.
                 char[] delim = { ',' };
@@ -55,16 +56,21 @@ namespace CSV_Reader
                     line = inputFile.ReadLine();
                     // Get the test scores as tokens.
                     string[] tokens = line.Split(delim);
-                    
+
+                    int[] scores = new int[tokens.Length];
+
+                
                     for (count = 0; count < tokens.Length; count++)
                     {
-                        int[] scores = int.Parse(tokens[]);
+                        scores[count] = int.Parse(tokens[count]);
                     }
                     // calculate the average by calling the method Average
                     average = Average(scores);
                     // Display the average.
                     averagesListBox.Items.Add("The average for student " +
-                        count + " is " + average.ToString("n1"));
+                        studentCount + " is " + average.ToString("n1"));
+                    // Student number increment.
+                    studentCount++;
                 }
 
                 // Close the file.
